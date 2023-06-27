@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 // connectDatabase();
 async function bootstrap() {
   try {
-    await mongoose.connect(process.env.DB_URL);
+    await mongoose.connect("mongodb+srv://E-Shop:t2nbLulDswG4zUFJ@cluster0.ecyy5fq.mongodb.net/?retryWrites=true&w=majority");
     console.log("🛢Database is connected successfully");
 
     server = app.listen(process.env.PORT, () => {
