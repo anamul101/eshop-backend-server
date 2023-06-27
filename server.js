@@ -1,5 +1,6 @@
 const app = require("./app");
-const connectDatabase = require("./db/Database");
+const mongoose = require("mongoose");
+// const connectDatabase = require("./db/Database");
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -15,21 +16,47 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   }
 
 // connect db
-connectDatabase();
+// connectDatabase();
+async function bootstrap() {
+  try {
+    await mongoose.connect(process.env.DB_URL);
+    console.log("🛢Database is connected successfully");
+
+    server = app.listen(process.env.PORT, () => {
+      console.log(`Application  listening on port ${process.env.PORT}`);
+    });
+  } catch (err) {
+    console.log('Failed to connect database', err);
+  }
+
+  process.on('unhandledRejection', error => {
+    if (server) {
+      server.close(() => {
+        console.log(error);
+        process.exit(1);
+      });
+    } else {
+      process.exit(1);
+    }
+  });
+}
+
+bootstrap();
+
 
 // create server
-const server = app.listen(process.env.PORT, () => {
-  console.log(
-    `Server is running on http://localhost:${process.env.PORT}`
-  );
-});
+// const server = app.listen(process.env.PORT, () => {
+//   console.log(
+//     `Server is running on http://localhost:${process.env.PORT}`
+//   );
+// });
 // t2nbLulDswG4zUFJ
 // unhandled promise rejection
-process.on("unhandledRejection", (err) => {
-  console.log(`Shutting down the server for ${err.message}`);
-  console.log(`shutting down the server for unhandle promise rejection`);
+// process.on("unhandledRejection", (err) => {
+//   console.log(`Shutting down the server for ${err.message}`);
+//   console.log(`shutting down the server for unhandle promise rejection`);
 
-  server.close(() => {
-    process.exit(1);
-  });
-});
+//   server.close(() => {
+//     process.exit(1);
+//   });
+// });
