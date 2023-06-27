@@ -3,7 +3,6 @@ const ErrorHandler=require("./middleware/error")
 const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-// const ErrorHandler = require("./utils/ErrorHandler");
 const cors = require("cors");
 const path =require("path");
 
@@ -13,7 +12,7 @@ app.use(cors({
   origin:"https://e-shop-projects-dz3s.vercel.app/",
   credentials:true,
 }));
-app.use("/", express.static(path.join(_dirname,"./uploads")));
+app.use("/", express.static("./uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
@@ -38,6 +37,7 @@ const order = require("./controller/order");
 const conversation = require("./controller/conversation");
 const message = require("./controller/message");
 const withdraw = require("./controller/withdraw");
+
 
 app.use("/api/v2/user", user);
 app.use("/api/v2/conversation", conversation);
