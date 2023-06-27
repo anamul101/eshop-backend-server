@@ -9,7 +9,7 @@ const path =require("path");
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin:"https://e-shop-projects-dz3s.vercel.app/",
+  origin:"https://e-shop-projects-dz3s-9ofhk64fl-anamul101.vercel.app/",
   credentials:true,
 }));
 app.use("/", express.static("./uploads"));
