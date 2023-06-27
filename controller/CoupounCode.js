@@ -32,7 +32,7 @@ router.post(
   })
 );
 
-// get all coupons of a shop
+// get all cupon
 router.get(
   "/get-coupon/:id",
   isSeller,
