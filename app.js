@@ -8,7 +8,7 @@ const path =require("path");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({credentials:true}));
 app.use("/", express.static("./uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
