@@ -44,7 +44,7 @@ router.post("/create-user", upload.single("file"), async (req, res, next) =>{
       // })
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://e-shop-projects-dz3s-9ofhk64fl-anamul101.vercel.app/activation/${activationToken}`;
+    const activationUrl = `https://shop-frontend-three.vercel.app/activation/${activationToken}`;
     try {
       await sendMail({
         email: user.email,
@@ -166,7 +166,8 @@ router.get(
   catchAsyncErrors(async (req, res, next) => {
     try {
       const user = await User.findById(req.user.id);
-
+      console.log(user)
+      
       if (!user) {
         return next(new ErrorHandler("User doesn't exists", 400));
       }
