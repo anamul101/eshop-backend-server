@@ -8,9 +8,7 @@ const path =require("path");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  credentials:true
-}));
+app.use(cors());
 app.use("/", express.static("./uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
@@ -21,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
     require("dotenv").config({
-      path: "/config/.env",
+      path: "config/.env",
     });
   }
 
@@ -36,7 +34,6 @@ const order = require("./controller/order");
 const conversation = require("./controller/conversation");
 const message = require("./controller/message");
 const withdraw = require("./controller/withdraw");
-
 
 
 app.use("/api/v2/user", user);
