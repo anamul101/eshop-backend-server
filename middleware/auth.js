@@ -11,7 +11,7 @@ exports.isAuthenticated = catchAsyncErrors(async(req,res,next) => {
         return next(new ErrorHandler("Please login to continue", 401));
     }
 
-    const decoded = jwt.verify(token, "dfbkjgflseiia3948943954wfsdchsgfuw#%#%");
+    const decoded = jwt.verify(token, dfbkjgflseiia3948943954wfsdchsgfuw);
 
     req.user = await User.findById(decoded.id);
 
