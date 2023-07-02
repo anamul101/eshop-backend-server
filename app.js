@@ -8,7 +8,10 @@ const path =require("path");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin:"https://shop-frontend-three.vercel.app/",
+  credentials:true
+}));
 app.use("/", express.static("./uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
