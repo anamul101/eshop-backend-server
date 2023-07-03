@@ -176,7 +176,7 @@ router.get(
         expires: new Date(Date.now()),
         httpOnly: true,
         sameSite: "none",
-        secure: true,
+        secure: false,
       });
       res.status(201).json({
         success: true,
