@@ -172,12 +172,10 @@ router.get(
   "/logout",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      res.cookie("seller_token", null, {
-        expires: new Date(Date.now()),
-        httpOnly: true,
-        path: "/logout", // Specify the correct path
-        domain: "https://shop-frontend-three.vercel.app",
-      });
+      req.session.destroy();
+
+    // Clear the "seller_token" cookie
+    res.clearCookie("seller_token", { httpOnly: true });
       res.status(201).json({
         success: true,
         message: "Log out successful!",
