@@ -172,10 +172,12 @@ router.get(
   "/logout",
   catchAsyncErrors(async (req, res, next) => {
     try {
-      res.cookie("seller_token", null, {
-        expires: new Date(Date.now()),
-        httpOnly: true,
-      });
+      res.clearCookie("seller_token");
+
+      // res.cookie("seller_token", null, {
+      //   expires: new Date(Date.now()),
+      //   httpOnly: true,
+      // });
       res.status(201).json({
         success: true,
         message: "Log out successful!",
