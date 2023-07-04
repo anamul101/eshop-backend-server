@@ -17,7 +17,7 @@ app.use(cors({
   origin: 'https://shop-frontend-three.vercel.app',
   credentials: true
 }));
-app.use("/", express.static("./uploads"));
+app.use("/", express.static(path.join(__dirname,"./uploads")));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
