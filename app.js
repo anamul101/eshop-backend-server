@@ -6,15 +6,15 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path =require("path");
 
-// app.use(function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', 'https://shop-frontend-three.vercel.app');
-//   res.header('Access-Control-Allow-Credentials', true);
-//   next();
-// });
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'https://shop-frontend-three.vercel.app');
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ['https://shop-frontend-three.vercel.app'],
+  origin: 'https://shop-frontend-three.vercel.app/',
   credentials: true
 }));
 app.use("/", express.static("./uploads"));
