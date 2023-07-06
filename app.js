@@ -11,12 +11,13 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
   next();
 });
-app.use(express.json());
-app.use(cookieParser());
 app.use(cors({
   origin: 'https://shop-frontend-three.vercel.app/',
   credentials: true
 }));
+app.use(express.json());
+app.use(cookieParser());
+
 app.use("/", express.static("./uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
