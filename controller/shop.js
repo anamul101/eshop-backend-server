@@ -151,7 +151,7 @@ router.get(
     catchAsyncErrors(async (req, res, next) => {
       try {
         const seller = await Shop.findById(req.seller._id);
-        
+        console.log(seller)
         if (!seller) {
           return next(new ErrorHandler("User doesn't exists", 400));
         }
@@ -175,6 +175,8 @@ router.get(
       res.cookie("seller_token", null, {
         expires: new Date(Date.now()),
         httpOnly: true,
+        sameSite: "none",
+        secure: true,
       });
       res.status(201).json({
         success: true,
